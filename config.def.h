@@ -22,14 +22,18 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
-const char *spcmd3[] = {"keepassxc", NULL };
+
+const char *spcmd1[] = {"st", "-n", "st-scratchpad", "-g", "100x25", NULL };
+const char *spcmd2[] = {"st", "-n", "volume-control","-g", "100x10", "-e", "wiremix", NULL };
+const char *spcmd3[] = {"st", "-n", "music",		 "-g", "100x25", "-e", "ncmpcpp", NULL };
+const char *spcmd4[] = {"st", "-n", "translate",	 "-g", "65x25",  "-e", "translate",NULL };
+
 static Sp scratchpads[] = {
-	/* name          cmd  */
-	{"spterm",      spcmd1},
-	{"spranger",    spcmd2},
-	{"keepassxc",   spcmd3},
+	/* name          	cmd  */
+	{"st-scratchpad", 	spcmd1},
+	{"volume-control",	spcmd2},
+	{"music",   		spcmd3},
+	{"translate",   	spcmd4},
 };
 
 /* tagging */
@@ -44,9 +48,10 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "firefox",  NULL,       NULL,       1,       		0,           -1 },
 	{ "librewolf",NULL,       NULL,       1,       		0,           -1 },
-	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
-	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 -1 },
-	{ NULL,		  "keepassxc",	NULL,		SPTAG(2),		0,			 -1 },
+	{ NULL,	 "st-scratchpad", NULL,		SPTAG(0),		1,			 -1 },
+	{ NULL,	 "volume-control",NULL,		SPTAG(1),		1,			 -1 },
+	{ NULL,	 "music",    	  NULL,		SPTAG(2),		1,			 -1 },
+	{ NULL,	 "translate",	  NULL,		SPTAG(3),		1,			 -1 },
 };
 
 /* layout(s) */
@@ -104,9 +109,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
-	{ MODKEY,            			XK_u,	   togglescratch,  {.ui = 1 } },
-	{ MODKEY,            			XK_x,	   togglescratch,  {.ui = 2 } },
+	{ MODKEY,            			XK_s,  	   togglescratch,  {.ui = 0 } },
+	{ MODKEY,            			XK_w,	   togglescratch,  {.ui = 1 } },
+	{ MODKEY,            			XK_n,	   togglescratch,  {.ui = 2 } },
+	{ MODKEY|ShiftMask,    			XK_t,	   togglescratch,  {.ui = 3 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
